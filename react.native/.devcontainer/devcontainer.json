@@ -1,0 +1,27 @@
+{
+    "name": "React Native Android Container",
+
+    // Sets the run context to one level up instead of the .devcontainer folder.
+    "context": "..",
+    // Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
+    "dockerFile": "Dockerfile",
+    "workspaceFolder": "/root/docker/compileSource/rocket.chat/Rocket.Chat.ReactNative-1.20.0",
+    "workspaceMount": "src=remote-workspace,dst=/workspace,type=volume,volume-driver=local",
+    // The optional 'runArgs' property can be used to specify additional runtime arguments.
+    "runArgs": [
+        "--privileged", // give all capabilities to a container, in other words, the container can then do almost everything that the host can do
+        "--net", "host", // forwarding all host machine ports
+        "-v", "/dev/bus/usb:/dev/bus/usb", // mount connected USB devices to a container
+        "--volumes-from", "source_code"// mount connected USB devices to a container
+    ],
+
+    "settings": {
+        // This will ignore your local shell user setting for Linux since shells like zsh are typically
+        // not in base container images. You can also update this to an specific shell to ensure VS Code
+        // uses the right one for terminals and tasks. For example, /bin/bash (or /bin/ash for Alpine).
+        "terminal.integrated.shell.linux": null
+    },
+
+    // Add the IDs of extensions you want installed when the container is created in the array below.
+    "extensions": ["msjsdiag.vscode-react-native"]
+}

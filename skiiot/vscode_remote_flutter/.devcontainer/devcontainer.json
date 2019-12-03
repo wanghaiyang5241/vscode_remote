@@ -1,0 +1,21 @@
+{
+	"name": "skiiot",
+	"dockerFile": "Dockerfile",
+	"workspaceFolder": "/root/docker/compileSource/skiiot",
+    "workspaceMount": "src=remote-workspace,dst=/workspace,type=volume,volume-driver=local",
+	"runArgs": [
+		"--privileged", 
+		"-v", "/dev/bus/usb:/dev/bus/usb",
+		"--volumes-from", "source_code"// mount source to a container
+	],
+	"settings": {
+        // This will ignore your local shell user setting for Linux since shells like zsh are typically
+        // not in base container images. You can also update this to an specific shell to ensure VS Code
+        // uses the right one for terminals and tasks. For example, /bin/bash (or /bin/ash for Alpine).
+        "terminal.integrated.shell.linux": null
+    },
+	"extensions": [
+		"dart-code.dart-code",
+		"dart-code.flutter"
+	]
+}
